@@ -25,6 +25,10 @@ public class KafkaConfig {
 		config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_id");
 		config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+		
+		//extra
+		config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+		config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); //disable autocommit of offset
 		return new DefaultKafkaConsumerFactory<>(config);
 	}
 
@@ -42,6 +46,10 @@ public class KafkaConfig {
 		config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_json_id");
 		config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+		
+		//extra
+		config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+		config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
 		return new DefaultKafkaConsumerFactory<String, User>(config, new StringDeserializer(), new JsonDeserializer<User>(User.class));
 	}
 
